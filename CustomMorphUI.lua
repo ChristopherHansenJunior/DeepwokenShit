@@ -9,9 +9,7 @@ syn_io_listdir = listfiles
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
-if not (getgenv().SouLoaded or getgenv().ProjectRainLoaded) then
-  repeat task.wait() until (getgenv().SouLoaded or getgenv().ProjectRainLoaded)
-end
+
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "Morph Gui's Loading...",
@@ -28,6 +26,16 @@ local TextService = game:GetService("TextService")
 local HttpService = game:GetService("HttpService")
 
 local LocalPlayer = Players.LocalPlayer
+
+
+if not (getgenv().SouLoaded or getgenv().ProjectRainLoaded) then
+  repeat task.wait() until (getgenv().SouLoaded or getgenv().ProjectRainLoaded)
+end
+queue_on_teleport("loadstring(game:HttpGet("https://raw.githubusercontent.com/ChristopherHansenJunior/DeepwokenShit/main/CustomMorphUI.lua"))()")
+if not LocalPlayer.Character then
+	LocalPlayer.CharacterAdded:Wait()
+end
+
 local PlayerGui = ((RunService:IsStudio() and LocalPlayer.PlayerGui) or game:GetService("CoreGui"))
 local Slot = LocalPlayer:GetAttribute("DataSlot")
 
