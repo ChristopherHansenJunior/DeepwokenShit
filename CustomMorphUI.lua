@@ -28,9 +28,9 @@ local HttpService = game:GetService("HttpService")
 local LocalPlayer = Players.LocalPlayer
 
 
-if not (getgenv().SouLoaded or getgenv().ProjectRainLoaded) then
-  repeat task.wait() until (getgenv().SouLoaded or getgenv().ProjectRainLoaded)
-end
+repeat task.wait() until (getgenv().ProjectRainLoaded or getgenv().SouLoaded)
+task.wait(2)
+print("PR-LOADED")
 queue_on_teleport("loadstring(game:HttpGet("https://raw.githubusercontent.com/ChristopherHansenJunior/DeepwokenShit/main/CustomMorphUI.lua"))()")
 if not LocalPlayer.Character then
 	LocalPlayer.CharacterAdded:Wait()
